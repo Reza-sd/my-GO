@@ -1,18 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-// Change brainwash to have a pointer parameter
-func brainwash(saying *string) {
-	// Dereference saying below:
-	*saying = "Beep Boop."
+func ask() int {
+	var input int
+	fmt.Print("I am thinking of a number between 1-100: ")
+	// Get the input from the user
+	fmt.Scan(&input)
+	return input
 }
 
 func main() {
-	greeting := "Hello there!"
+	var guess int
 
-	// Call your brainwash() below:
-	brainwash(&greeting)
+	// WRITE THE INDEFINITE LOOP CONTAINING THE ASK FUNCTION BELOW
+	for guess != 56 {
+		guess = ask()
+	}
 
-	fmt.Println("greeting is now:", greeting)
+	if guess == 56 {
+		fmt.Println("You are correct! You may go through to the treasure!")
+	}
 }
