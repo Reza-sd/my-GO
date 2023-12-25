@@ -2,57 +2,42 @@ package main
 
 import "fmt"
 
-func main() {
-	//---------------Declaring an Empty Map----------------
-	// Create a empty map called emptyMap
-	emptyMap := make(map[string]int)
+type DonutShop struct {
+	donuts    map[string]int
+	customers map[string]float32
+}
 
-	// Print map
-	fmt.Println(emptyMap)
-	//---------------Declaring a Map with Values-------------
-	// Initialize map gradebook with values
-	gradebook := map[string]float32{"John": 85.2, "Ana": 95.6}
-
-	// Print map gradebook
-	fmt.Println(gradebook)
-	//----------------Accessing Elements-----------------------
-	// Print the value with key "John"
-	fmt.Println(gradebook["John"])
-	//--------Iterating All Key/Value Pairs in a Map----------
-	// Iterate all key/value pairs of the gradebook map
-	for key, value := range gradebook {
-		fmt.Printf("(%s, %.1f)\n", key, value)
+func (s *DonutShop) init() {
+	s.donuts = map[string]int{
+		"frosted":   10,
+		"chocolate": 15,
+		"jelly":     8,
 	}
-	//----------Storing a Map Value in a Variable--------------
-	// Store the value that has a key of "Ana" in anaScore
-	anaScore := gradebook["Ana"]
+	s.customers = make(map[string]float32)
+}
 
-	fmt.Println(anaScore)
+func (s DonutShop) calculatePrice(count int) float32 {
+	return float32(count) * 1.50
+}
 
-	//----------Accessing a Key That Doesn’t Exist-------------
-	// Store the value that has a key of "John" in johnScore
-	johnScore := gradebook["David"]
+func (s DonutShop) placeOrder(name string, kind string, count int) {
+	s.customers[name] = s.calculatePrice(count)
+	s.donuts[kind] = s.donuts[kind] - count
+}
 
-	// Since "David" does not exist in the map, 0 will be printed
-	fmt.Println(johnScore)
-	//--------------Adding Values---------------------------
-	// Print the initialized map
-	fmt.Println(gradebook)
+func (s DonutShop) checkout(name string) {
+	fmt.Printf("%s please pay %f\n", name, s.customers[name])
+}
 
-	// Add more key-value pairs
-	gradebook["George"] = 76.4
-	gradebook["Emma"] = 90
+func main() {
+	var name = "daryl"
+	var kind = "jelly"
+	var count = 5
+	var donutShop = new(DonutShop)
 
-	// Print the map again
-	fmt.Println(gradebook)
-	//------------Removing Values-------------------------------
-	// Print the initialized map
-	fmt.Println(gradebook)
-
-	// Delete an item
-	delete(gradebook, "John")
-
-	// Print the map again
-	fmt.Println(gradebook)
-	//---------------------------------------------
+	donutShop.init()
+	donutShop.placeOrder(name, kind, count)
+	donutShop.checkout(name)
+	fmt.Println(donutShop.customers)
+	fmt.Println(donutShop.donuts)
 }
