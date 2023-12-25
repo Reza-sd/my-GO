@@ -1,8 +1,10 @@
 package main
 
-import "fmt"
 
-type DonutShop struct {
+import "fmt"
+// Struct names begin with a capital letter in Go
+
+type DonutShop struct { // D <----capital letter
   donuts    map[string]int
   customers map[string]float32
 }
