@@ -1,43 +1,41 @@
 package main
 
-import "fmt"
-
-type DonutShop struct {
-	donuts    map[string]int
-	customers map[string]float32
-}
-
-func (s *DonutShop) init() {
-	s.donuts = map[string]int{
-		"frosted":   10,
-		"chocolate": 15,
-		"jelly":     8,
-	}
-	s.customers = make(map[string]float32)
-}
-
-func (s DonutShop) calculatePrice(count int) float32 {
-	return float32(count) * 1.50
-}
-
-func (s DonutShop) placeOrder(name string, kind string, count int) {
-	s.customers[name] = s.calculatePrice(count)
-	s.donuts[kind] = s.donuts[kind] - count
-}
-
-func (s DonutShop) checkout(name string) {
-	fmt.Printf("%s please pay %f\n", name, s.customers[name])
-}
+import (
+	"fmt"
+)
 
 func main() {
-	var name = "daryl"
-	var kind = "jelly"
-	var count = 5
-	var donutShop = new(DonutShop)
 
-	donutShop.init()
-	donutShop.placeOrder(name, kind, count)
-	donutShop.checkout(name)
-	fmt.Println(donutShop.customers)
-	fmt.Println(donutShop.donuts)
+	var currencies = map[string]float32{
+		"JPY": 130.2,
+		"EUR": 0.95,
+	}
+
+	var dollarAmount float32
+	var currency string
+
+	fmt.Println(currencies, currency)
+
+	fmt.Println("Please enter dollar Amount:")
+	fmt.Scan(&dollarAmount)
+
+	if dollarAmount == 0 {
+		fmt.Println("Invalid dollarAmount.")
+	} else {
+		// rest of your code
+		fmt.Println("Please enter your  the target currency:")
+		fmt.Scan(&currency)
+
+		rate, isInMap := currencies[currency]
+		if isInMap {
+			fmt.Println("we found the rate", rate)
+			fmt.Println("The amount of target currency is : ", rate*dollarAmount)
+
+		} else {
+			//zero value if key is not in the map)
+			fmt.Println("no such rate!", rate)
+		}
+
+	}
+
 }
