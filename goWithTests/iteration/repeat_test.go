@@ -5,20 +5,20 @@ import "testing"
 // =========================================================
 func Test_Add(t *testing.T) {
 	//----------
-	t.Run("1-one chatacter to 5 repeat", func(t *testing.T) {
-		act := Repeat("a")              //Act - my act
+	t.Run("t1-one chatacter to 5 repeat", func(t *testing.T) {
+		act := Repeat("a", 5)           //Act - my act
 		exp := "aaaaa"                  //Expecgoted - my expectation
 		assertCorrectValue(t, act, exp) //assertion - my assertion
 	})
 	//-----------
-	t.Run("2-two chatacter to 5 repeat", func(t *testing.T) {
-		act := Repeat("bc")             //Act - my act
+	t.Run("t2-two chatacter to 5 repeat", func(t *testing.T) {
+		act := Repeat("bc", 5)          //Act - my act
 		exp := "bcbcbcbcbc"             //Expected - my expectation
 		assertCorrectValue(t, act, exp) //assertion - my assertion
 	})
 	//-----------
-	t.Run("3-three chatacter to 5 repeat", func(t *testing.T) {
-		act := Repeat("e2f")            //Act - my act
+	t.Run("t3-three chatacter to 5 repeat", func(t *testing.T) {
+		act := Repeat("e2f", 5)         //Act - my act
 		exp := "e2fe2fe2fe2fe2f"        //Expected - my expectation
 		assertCorrectValue(t, act, exp) //assertion - my assertion
 	})
@@ -34,9 +34,25 @@ func assertCorrectValue(t testing.TB, act, exp string) {
 }
 
 // =================Benchmark=========================
-func BenchmarkRepeat(b *testing.B) {
-  for i := 0; i < b.N; i++ {
-    Repeat("a")
-  }
+func Benchmark_Repeat(b *testing.B) {
+	b.Run("b1-one chatacter to 5 repeat", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			Repeat("a", 10)
+		}
+	})
+	//-----------
+	b.Run("b2-two chatacter to 5 repeat", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			Repeat("bc", 15)
+		}
+	})
+	//-----------
+	b.Run("b3-three chatacter to 5 repeat", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			Repeat("e2f", 20)
+		}
+	})
+	//-----------
 }
+
 // ====================================================
