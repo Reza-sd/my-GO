@@ -25,7 +25,7 @@ func Test_Add(t *testing.T) {
 	//-----------
 }
 
-// =============================================
+// ==============assertion-function======================
 func assertCorrectValue(t testing.TB, act, exp string) {
 	t.Helper()
 	if act != exp {
@@ -33,4 +33,10 @@ func assertCorrectValue(t testing.TB, act, exp string) {
 	}
 }
 
-//-------------------------------
+// =================Benchmark=========================
+func BenchmarkRepeat(b *testing.B) {
+  for i := 0; i < b.N; i++ {
+    Repeat("a")
+  }
+}
+// ====================================================
