@@ -16,7 +16,7 @@ func Test_Add(t *testing.T) {
 	//-----------
 	t.Run("2-adding two integers", func(t *testing.T) {
 		act := Add(1, 2)                //Act - my act
-		exp := 30                        //Expected - my expectation
+		exp := 3                        //Expected - my expectation
 		assertCorrectValue(t, act, exp) //assertion - my assertion
 	})
 	//-----------

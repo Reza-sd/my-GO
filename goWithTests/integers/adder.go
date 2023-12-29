@@ -3,6 +3,7 @@ package integers
 
 func Add(x, y int) int {
   //fmt.Println("******",x+y)
-  return x + y
+  result := x + y
+  return result
 }
 
