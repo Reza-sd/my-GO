@@ -74,15 +74,29 @@ func Test_SumAll(t *testing.T) {
 		assert_SumAll(t, act, exp)        //Assertion
 	})
 	//------------
-	t.Run("t4-sum of slice of 2 item include 2 number []int{1,2},[]int{4,6}", func(t *testing.T) {
+	t.Run("t4-sum of slice of 2 item include 2 number ", func(t *testing.T) {
 
 		act := SumAll([]int{1,2}, []int{4,6}) //Act
 		exp := []int{3, 10}                //Expectation
 		assert_SumAll(t, act, exp)        //Assertion
 	})
 	//------------
+	t.Run("t5-sum of slice of 2 item include 3/more and negative number ", func(t *testing.T) {
+
+		act := SumAll([]int{1,2,-3}, []int{4,6,-6,-33}) //Act
+		exp := []int{0, -29}                //Expectation
+		assert_SumAll(t, act, exp)        //Assertion
+	})
+	//------------
+	t.Run("t5-sum of slice of 3/more item include 3/more and negative", func(t *testing.T) {
+
+		act := SumAll([]int{1,2,-3}, []int{4,6,-6,-33},[]int{100,0,-1}) //Act
+		exp := []int{0, -29,99}                //Expectation
+		assert_SumAll(t, act, exp)        //Assertion
+	})
+	//------------
 } //END
-// -----------assert_SumAll----------
+// ------------------------assert_SumAll------------------------
 func assert_SumAll(t testing.TB, act, exp []int) {
 	t.Helper()
 	//if !slices.Equal(act, exp) {
