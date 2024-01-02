@@ -1,3 +1,7 @@
 { pkgs }: {
-  deps = [];
+  deps = [
+    pkgs.iputils
+    pkgs.unixtools.ping
+    pkgs.tree
+  ];
 }
