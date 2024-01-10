@@ -15,7 +15,7 @@ func main() {
 	for index, word := range mySlice {
 		fmt.Printf("The index is: %v the element is: %v\n", index, word)
 	}
-	for _ , word := range mySlice {
+	for _, word := range mySlice {
 		fmt.Printf("the element is: %v\n", word)
 	}
 
