@@ -1,0 +1,14 @@
+git config --global user.email "netart2000@gmail.com"
+git config --global user.name "asananda"
+git config --global credential.helper store
+-------------------------------------------
+gofumpt -l -w .
+gofumpt -d .
+
+gofmt -l -w .
+gofmt -d .
+
+watch go run main.go
+--------------------------------------------
+git log
+git status

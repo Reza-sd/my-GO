@@ -1,0 +1,72 @@
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"os"
+)
+
+// -----------------whenNoArg------------------------
+func whenNoArg() {
+	content, err := ioutil.ReadAll(os.Stdin)
+	if err != nil {
+		fmt.Println("Error reading input:", err)
+	} else {
+		fmt.Print(string(content))
+	}
+}
+
+// -------------showFileContent--------------------
+func showFileContent(filename string, numberOfArguments int) {
+	_, errfileInfo := os.Stat(filename)
+	if errfileInfo != nil {
+		fmt.Printf("ERROR: open %v: no such file or directory\n", filename)
+		if numberOfArguments == 1 {
+			fmt.Println("exit status 1")
+		}
+	} else {
+		content, err := ioutil.ReadFile(filename)
+		if err != nil {
+			// fmt.Printf("ERROR: open %v: no such file or directory\n", filename)
+			// if numberOfArguments == 1 {
+			// 	fmt.Println("exit status 1")
+			// }
+		} else {
+			fmt.Println(string(content[:len(content)-1]))
+		}
+
+	}
+}
+
+// ----------------------------------
+func saveFile(filename string, str string) {
+	file, err := os.Create(filename)
+	if err != nil {
+	} else {
+		file.WriteString(str)
+		file.Close()
+	}
+}
+
+// ------------------------------------------
+func main() {
+	//-------setup---------------------
+	args := os.Args[1:]
+	numOfArgs := len(args)
+	if numOfArgs == 0 {
+		//whenNoArg()
+		// Read from stdin
+		data, err := ioutil.ReadAll(os.Stdin)
+		if err != nil {
+			fmt.Println("Error reading stdin:", err)
+			os.Exit(1)
+		}
+		fmt.Println(string(data))
+		return
+	} else {
+		for _, filename := range args {
+			showFileContent(filename, numOfArgs)
+		}
+	}
+	// -------------------------------
+}
